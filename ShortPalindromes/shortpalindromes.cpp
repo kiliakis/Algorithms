@@ -8,23 +8,15 @@ using namespace std;
 string dp[25][26];
 
 class ShortPalindromes{
-	bool isPalindrome(const string &str){
-		for(int i = 0; i < str.size()/2; ++i)
-			if(str[i] != str[str.size()-i-1])
-				return false;
-		return true;
-	}
 
 public:
 	
-
 	string shortest(const string &base){
 		for(int i = 0; i < base.size(); ++i)
 			dp[i][0] = "";
 
 		for(int i = 0; i < base.size(); ++i)
 			dp[i][1] = base[i];
-		
 		
 		for(int len = 2; len <= base.size(); len++){
 			for(int s = 0; s < base.size(); s++ ){
@@ -41,7 +33,6 @@ public:
 							dp[s][len] = right;
 						else
 							dp[s][len] = min(left, right);
-						//dp[s][len] = min(left, right);
 					}
 				}
 			}
