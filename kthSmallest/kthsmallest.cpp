@@ -20,20 +20,15 @@ public:
         
         priority_queue<elem> pq;
         pq.push({0,0, matrix[0][0]});
-        vector< vector<bool> > visited(matrix.size(),
-                                       vector<bool>(matrix.size(), false));
-        visited[0][0] = true;
         k--;
         while(!pq.empty() && k>0){
             auto e = pq.top();
             pq.pop();
-            if(e.i+1 < matrix.size() && !visited[e.i+1][e.j]){
+            if(e.i+1 < matrix.size()){
                 pq.push({e.i+1, e.j, matrix[e.i+1][e.j]});
-                visited[e.i+1][e.j] = true;
             }
-            if(e.j+1 < matrix.size() && !visited[e.i][e.j+1]){
+            if(e.j+1 < matrix.size()){
                 pq.push({e.i, e.j+1, matrix[e.i][e.j+1]});
-                visited[e.i][e.j+1] = true;
             }
             k--;
         }
@@ -48,6 +43,7 @@ int main(){
     Solution s;
     vector< vector<int> > matrix = {{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
     cout << s.kthsmallest(matrix, 8) << "\n";
+    cout << s.kthsmallest(matrix, 4) << "\n";
     return 0;
 }
 
